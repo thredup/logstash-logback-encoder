@@ -153,6 +153,9 @@
                 <arguments>
                     <includeNonStructuredArguments>true</includeNonStructuredArguments>
                     <nonStructuredArgumentsFieldPrefix>prefix</nonStructuredArgumentsFieldPrefix>
+                    <nonStructuredArgumentsFieldsMapping>
+                        {"arg0": "address", "arg1": "what?"}
+                    </nonStructuredArgumentsFieldsMapping>
                 </arguments>
                 <throwableClassName/>
                 <throwableRootCauseClassName>
