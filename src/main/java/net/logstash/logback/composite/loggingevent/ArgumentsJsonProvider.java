@@ -31,17 +31,17 @@ import java.util.Map;
 /**
  * Include the logging event's {@link ILoggingEvent#getArgumentArray()} in the JSON output.
  * <p>
- * <p>
+ *
  * Arguments that are an instance of {@link StructuredArgument} will be output
  * as specified by {@link StructuredArgument#writeTo(JsonGenerator)}.
  * <p>
- * <p>
+ *
  * Non-{@link StructuredArgument}s will be omitted unless {@link #includeNonStructuredArguments} is true.
  * When true, they will be included in the JSON output as separate fields
  * whose names are {@link #nonStructuredArgumentsFieldPrefix} plus the argument index.
  * (For example, "arg0").
  * </p>
- * <p>
+ *
  * If the fieldName is non-null, then the arguments will be written to that field as a subobject.
  * Otherwise, the arguments are written inline.
  */
@@ -90,7 +90,7 @@ public class ArgumentsJsonProvider extends AbstractFieldJsonProvider<ILoggingEve
                 }
                 String fieldName = nonStructuredArgumentsFieldPrefix + argIndex;
                 String mappedName = nonStructuredArgumentsFieldsMappingMap.get(fieldName);
-                generator.writeObjectField(mappedName != null ? mappedName : fieldName, arg);
+                generator.writeObjectField(mappedName != null ? mappedName : fieldName, arg.toString());
             }
         }
 
@@ -150,7 +150,7 @@ public class ArgumentsJsonProvider extends AbstractFieldJsonProvider<ILoggingEve
                         createParser(this.nonStructuredArgumentsFieldsMapping).readValueAs(new TypeReference<HashMap<String, Object>>() {
                 });
             } catch (IOException e) {
-                addError("Failed to parse custom fields [" + nonStructuredArgumentsFieldsMappingMap + "]", e);
+                addError("Failed to parse mapped fields [" + nonStructuredArgumentsFieldsMappingMap + "]", e);
             }
         }
     }
