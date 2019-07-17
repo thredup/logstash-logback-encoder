@@ -90,7 +90,7 @@ public class ArgumentsJsonProvider extends AbstractFieldJsonProvider<ILoggingEve
                 }
                 String fieldName = nonStructuredArgumentsFieldPrefix + argIndex;
                 String mappedName = nonStructuredArgumentsFieldsMappingMap.get(fieldName);
-                generator.writeObjectField(mappedName != null ? mappedName : fieldName, arg.toString());
+                generator.writeObjectField(mappedName != null ? mappedName : fieldName, arg instanceof Number ? arg : arg.toString());
             }
         }
 
